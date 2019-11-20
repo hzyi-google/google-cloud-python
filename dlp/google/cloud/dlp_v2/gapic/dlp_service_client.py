@@ -86,21 +86,36 @@ class DlpServiceClient(object):
 
     @classmethod
     def dlp_job_path(cls, project, dlp_job):
-        """Return a fully-qualified dlp_job string."""
+        """DEPRECATED. Return a fully-qualified dlp_job string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "projects/{project}/dlpJobs/{dlp_job}", project=project, dlp_job=dlp_job
         )
 
     @classmethod
     def organization_path(cls, organization):
-        """Return a fully-qualified organization string."""
+        """DEPRECATED. Return a fully-qualified organization string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "organizations/{organization}", organization=organization
         )
 
     @classmethod
     def organization_deidentify_template_path(cls, organization, deidentify_template):
-        """Return a fully-qualified organization_deidentify_template string."""
+        """DEPRECATED. Return a fully-qualified organization_deidentify_template string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "organizations/{organization}/deidentifyTemplates/{deidentify_template}",
             organization=organization,
@@ -109,7 +124,12 @@ class DlpServiceClient(object):
 
     @classmethod
     def organization_inspect_template_path(cls, organization, inspect_template):
-        """Return a fully-qualified organization_inspect_template string."""
+        """DEPRECATED. Return a fully-qualified organization_inspect_template string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "organizations/{organization}/inspectTemplates/{inspect_template}",
             organization=organization,
@@ -118,7 +138,12 @@ class DlpServiceClient(object):
 
     @classmethod
     def organization_stored_info_type_path(cls, organization, stored_info_type):
-        """Return a fully-qualified organization_stored_info_type string."""
+        """DEPRECATED. Return a fully-qualified organization_stored_info_type string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "organizations/{organization}/storedInfoTypes/{stored_info_type}",
             organization=organization,
@@ -127,14 +152,24 @@ class DlpServiceClient(object):
 
     @classmethod
     def project_path(cls, project):
-        """Return a fully-qualified project string."""
+        """DEPRECATED. Return a fully-qualified project string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "projects/{project}", project=project
         )
 
     @classmethod
     def project_deidentify_template_path(cls, project, deidentify_template):
-        """Return a fully-qualified project_deidentify_template string."""
+        """DEPRECATED. Return a fully-qualified project_deidentify_template string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "projects/{project}/deidentifyTemplates/{deidentify_template}",
             project=project,
@@ -143,7 +178,12 @@ class DlpServiceClient(object):
 
     @classmethod
     def project_inspect_template_path(cls, project, inspect_template):
-        """Return a fully-qualified project_inspect_template string."""
+        """DEPRECATED. Return a fully-qualified project_inspect_template string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "projects/{project}/inspectTemplates/{inspect_template}",
             project=project,
@@ -152,7 +192,12 @@ class DlpServiceClient(object):
 
     @classmethod
     def project_job_trigger_path(cls, project, job_trigger):
-        """Return a fully-qualified project_job_trigger string."""
+        """DEPRECATED. Return a fully-qualified project_job_trigger string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "projects/{project}/jobTriggers/{job_trigger}",
             project=project,
@@ -161,7 +206,12 @@ class DlpServiceClient(object):
 
     @classmethod
     def project_stored_info_type_path(cls, project, stored_info_type):
-        """Return a fully-qualified project_stored_info_type string."""
+        """DEPRECATED. Return a fully-qualified project_stored_info_type string."""
+        warnings.warn(
+            "Resource name helper functions are deprecated.",
+            PendingDeprecationWarning,
+            stacklevel=1,
+        )
         return google.api_core.path_template.expand(
             "projects/{project}/storedInfoTypes/{stored_info_type}",
             project=project,
@@ -620,7 +670,7 @@ class DlpServiceClient(object):
             >>> response = client.reidentify_content(parent)
 
         Args:
-            parent (str): The parent resource name.
+            parent (str): Required. The parent resource name.
             reidentify_config (Union[dict, ~google.cloud.dlp_v2.types.DeidentifyConfig]): Configuration for the re-identification of the content item. This field
                 shares the same proto message type that is used for de-identification,
                 however its usage here is for the reversal of the previous
@@ -629,6 +679,7 @@ class DlpServiceClient(object):
                 This requires that only reversible transformations be provided here. The
                 reversible transformations are:
 
+                -  ``CryptoDeterministicConfig``
                 -  ``CryptoReplaceFfxFpeConfig``
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -794,7 +845,7 @@ class DlpServiceClient(object):
             >>> response = client.create_inspect_template(parent)
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id or
+            parent (str): Required. The parent resource name, for example projects/my-project-id or
                 organizations/my-org-id.
             inspect_template (Union[dict, ~google.cloud.dlp_v2.types.InspectTemplate]): The InspectTemplate to create.
 
@@ -877,8 +928,9 @@ class DlpServiceClient(object):
             >>> response = client.update_inspect_template(name)
 
         Args:
-            name (str): Resource name of organization and inspectTemplate to be updated, for
-                example ``organizations/433245324/inspectTemplates/432452342`` or
+            name (str): Required. Resource name of organization and inspectTemplate to be
+                updated, for example
+                ``organizations/433245324/inspectTemplates/432452342`` or
                 projects/project-id/inspectTemplates/432452342.
             inspect_template (Union[dict, ~google.cloud.dlp_v2.types.InspectTemplate]): New InspectTemplate value.
 
@@ -957,9 +1009,9 @@ class DlpServiceClient(object):
             >>> response = client.get_inspect_template()
 
         Args:
-            name (str): Resource name of the organization and inspectTemplate to be read, for
-                example ``organizations/433245324/inspectTemplates/432452342`` or
-                projects/project-id/inspectTemplates/432452342.
+            name (str): Required. Resource name of the organization and inspectTemplate to be
+                read, for example ``organizations/433245324/inspectTemplates/432452342``
+                or projects/project-id/inspectTemplates/432452342.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1043,7 +1095,7 @@ class DlpServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id or
+            parent (str): Required. The parent resource name, for example projects/my-project-id or
                 organizations/my-org-id.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
@@ -1147,8 +1199,9 @@ class DlpServiceClient(object):
             >>> client.delete_inspect_template(name)
 
         Args:
-            name (str): Resource name of the organization and inspectTemplate to be deleted, for
-                example ``organizations/433245324/inspectTemplates/432452342`` or
+            name (str): Required. Resource name of the organization and inspectTemplate to be
+                deleted, for example
+                ``organizations/433245324/inspectTemplates/432452342`` or
                 projects/project-id/inspectTemplates/432452342.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -1220,7 +1273,7 @@ class DlpServiceClient(object):
             >>> response = client.create_deidentify_template(parent)
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id or
+            parent (str): Required. The parent resource name, for example projects/my-project-id or
                 organizations/my-org-id.
             deidentify_template (Union[dict, ~google.cloud.dlp_v2.types.DeidentifyTemplate]): The DeidentifyTemplate to create.
 
@@ -1308,8 +1361,9 @@ class DlpServiceClient(object):
             >>> response = client.update_deidentify_template(name)
 
         Args:
-            name (str): Resource name of organization and deidentify template to be updated, for
-                example ``organizations/433245324/deidentifyTemplates/432452342`` or
+            name (str): Required. Resource name of organization and deidentify template to be
+                updated, for example
+                ``organizations/433245324/deidentifyTemplates/432452342`` or
                 projects/project-id/deidentifyTemplates/432452342.
             deidentify_template (Union[dict, ~google.cloud.dlp_v2.types.DeidentifyTemplate]): New DeidentifyTemplate value.
 
@@ -1393,8 +1447,9 @@ class DlpServiceClient(object):
             >>> response = client.get_deidentify_template(name)
 
         Args:
-            name (str): Resource name of the organization and deidentify template to be read,
-                for example ``organizations/433245324/deidentifyTemplates/432452342`` or
+            name (str): Required. Resource name of the organization and deidentify template to
+                be read, for example
+                ``organizations/433245324/deidentifyTemplates/432452342`` or
                 projects/project-id/deidentifyTemplates/432452342.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -1480,7 +1535,7 @@ class DlpServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id or
+            parent (str): Required. The parent resource name, for example projects/my-project-id or
                 organizations/my-org-id.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
@@ -1585,8 +1640,9 @@ class DlpServiceClient(object):
             >>> client.delete_deidentify_template(name)
 
         Args:
-            name (str): Resource name of the organization and deidentify template to be deleted,
-                for example ``organizations/433245324/deidentifyTemplates/432452342`` or
+            name (str): Required. Resource name of the organization and deidentify template to
+                be deleted, for example
+                ``organizations/433245324/deidentifyTemplates/432452342`` or
                 projects/project-id/deidentifyTemplates/432452342.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -1664,7 +1720,7 @@ class DlpServiceClient(object):
             >>> response = client.create_dlp_job(parent)
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id.
+            parent (str): Required. The parent resource name, for example projects/my-project-id.
             inspect_job (Union[dict, ~google.cloud.dlp_v2.types.InspectJobConfig]):
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.dlp_v2.types.InspectJobConfig`
@@ -1769,7 +1825,7 @@ class DlpServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id.
+            parent (str): Required. The parent resource name, for example projects/my-project-id.
             filter_ (str): Optional. Allows filtering.
 
                 Supported syntax:
@@ -1912,7 +1968,7 @@ class DlpServiceClient(object):
             >>> response = client.get_dlp_job(name)
 
         Args:
-            name (str): The name of the DlpJob resource.
+            name (str): Required. The name of the DlpJob resource.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1985,7 +2041,7 @@ class DlpServiceClient(object):
             >>> client.delete_dlp_job(name)
 
         Args:
-            name (str): The name of the DlpJob resource to be deleted.
+            name (str): Required. The name of the DlpJob resource to be deleted.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2055,7 +2111,7 @@ class DlpServiceClient(object):
             >>> client.cancel_dlp_job(name)
 
         Args:
-            name (str): The name of the DlpJob resource to be cancelled.
+            name (str): Required. The name of the DlpJob resource to be cancelled.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2137,7 +2193,8 @@ class DlpServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): The parent resource name, for example ``projects/my-project-id``.
+            parent (str): Required. The parent resource name, for example
+                ``projects/my-project-id``.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -2272,7 +2329,7 @@ class DlpServiceClient(object):
             >>> response = client.get_job_trigger(name)
 
         Args:
-            name (str): Resource name of the project and the triggeredJob, for example
+            name (str): Required. Resource name of the project and the triggeredJob, for example
                 ``projects/dlp-test-project/jobTriggers/53234423``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2344,7 +2401,7 @@ class DlpServiceClient(object):
             >>> client.delete_job_trigger(name)
 
         Args:
-            name (str): Resource name of the project and the triggeredJob, for example
+            name (str): Required. Resource name of the project and the triggeredJob, for example
                 ``projects/dlp-test-project/jobTriggers/53234423``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2414,7 +2471,7 @@ class DlpServiceClient(object):
             >>> response = client.update_job_trigger(name)
 
         Args:
-            name (str): Resource name of the project and the triggeredJob, for example
+            name (str): Required. Resource name of the project and the triggeredJob, for example
                 ``projects/dlp-test-project/jobTriggers/53234423``.
             job_trigger (Union[dict, ~google.cloud.dlp_v2.types.JobTrigger]): New JobTrigger value.
 
@@ -2498,7 +2555,7 @@ class DlpServiceClient(object):
             >>> response = client.create_job_trigger(parent)
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id.
+            parent (str): Required. The parent resource name, for example projects/my-project-id.
             job_trigger (Union[dict, ~google.cloud.dlp_v2.types.JobTrigger]): The JobTrigger to create.
 
                 If a dict is provided, it must be of the same form as the protobuf
@@ -2581,7 +2638,7 @@ class DlpServiceClient(object):
             >>> response = client.create_stored_info_type(parent)
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id or
+            parent (str): Required. The parent resource name, for example projects/my-project-id or
                 organizations/my-org-id.
             config (Union[dict, ~google.cloud.dlp_v2.types.StoredInfoTypeConfig]): Configuration of the storedInfoType to create.
 
@@ -2666,8 +2723,9 @@ class DlpServiceClient(object):
             >>> response = client.update_stored_info_type(name)
 
         Args:
-            name (str): Resource name of organization and storedInfoType to be updated, for
-                example ``organizations/433245324/storedInfoTypes/432452342`` or
+            name (str): Required. Resource name of organization and storedInfoType to be
+                updated, for example
+                ``organizations/433245324/storedInfoTypes/432452342`` or
                 projects/project-id/storedInfoTypes/432452342.
             config (Union[dict, ~google.cloud.dlp_v2.types.StoredInfoTypeConfig]): Updated configuration for the storedInfoType. If not provided, a new
                 version of the storedInfoType will be created with the existing
@@ -2751,9 +2809,9 @@ class DlpServiceClient(object):
             >>> response = client.get_stored_info_type(name)
 
         Args:
-            name (str): Resource name of the organization and storedInfoType to be read, for
-                example ``organizations/433245324/storedInfoTypes/432452342`` or
-                projects/project-id/storedInfoTypes/432452342.
+            name (str): Required. Resource name of the organization and storedInfoType to be
+                read, for example ``organizations/433245324/storedInfoTypes/432452342``
+                or projects/project-id/storedInfoTypes/432452342.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2838,7 +2896,7 @@ class DlpServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): The parent resource name, for example projects/my-project-id or
+            parent (str): Required. The parent resource name, for example projects/my-project-id or
                 organizations/my-org-id.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
@@ -2944,8 +3002,9 @@ class DlpServiceClient(object):
             >>> client.delete_stored_info_type(name)
 
         Args:
-            name (str): Resource name of the organization and storedInfoType to be deleted, for
-                example ``organizations/433245324/storedInfoTypes/432452342`` or
+            name (str): Required. Resource name of the organization and storedInfoType to be
+                deleted, for example
+                ``organizations/433245324/storedInfoTypes/432452342`` or
                 projects/project-id/storedInfoTypes/432452342.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
